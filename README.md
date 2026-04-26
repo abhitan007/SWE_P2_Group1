@@ -6,6 +6,14 @@ A full-stack MERN application that consolidates academic management, hostel & we
 
 ## Quick Start
 
+## Key Technical Highlights
+
+- **Role-Based Access Control (RBAC):** Secure, strictly partitioned workflows for Students, Faculty, Admins, and HMC Members.
+- **Atomic Operations:** Race-condition protection for high-concurrency events, such as course capacity reservations.
+- **Dynamic Document Generation:** On-demand, server-side PDF rendering for official academic transcripts using PDFKit.
+- **Hardened Security:** Built-in mass-assignment guards, strict MIME-type whitelisting for uploads, and XSS prevention.
+- **Immutable Audit Trails:** Append-only logging system that tracks all sensitive administrative actions across the portal.
+
 ### Prerequisites
 
 - **Node.js** v18 or higher
@@ -219,7 +227,7 @@ Full route definitions live in `backend/routes/`.
 
 ## Authoring Notes
 
-- **Roles**: 4 roles only — `student`, `faculty`, `admin`, `hmc_member`. (No separate `hostel_staff`.)
+- **Roles**: 4 roles only — `student`, `faculty`, `admin`, `hmc_member`. (No separate `hostel_staff`.)  
 - **Files in MongoDB**: All uploads (avatars, complaint photos, resources, transcripts, submissions, attachments) are stored as Base64 data URLs inside Mongo documents. No disk persistence, no static file serving.
 - **Frontend↔Backend**: Backend is mounted at `/api/*`. The frontend dev server (`http://localhost:5173`) proxies via the configured base URL in `services/authService.js` (`baseURL: '/api'`); CORS allows the same origin in `app.js`.
 - **`hostel_staff` was removed**: The role was redundant with `hmc_member` and was dropped from the User enum, route guards, and the Login screen.
