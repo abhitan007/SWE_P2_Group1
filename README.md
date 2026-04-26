@@ -6,6 +6,14 @@ A full-stack MERN application that consolidates academic management, hostel & we
 
 ## Quick Start
 
+## Key Technical Highlights
+
+- **Role-Based Access Control (RBAC):** Secure, strictly partitioned workflows for Students, Faculty, Admins, and HMC Members.
+- **Atomic Operations:** Race-condition protection for high-concurrency events, such as course capacity reservations.
+- **Dynamic Document Generation:** On-demand, server-side PDF rendering for official academic transcripts using PDFKit.
+- **Hardened Security:** Built-in mass-assignment guards, strict MIME-type whitelisting for uploads, and XSS prevention.
+- **Immutable Audit Trails:** Append-only logging system that tracks all sensitive administrative actions across the portal.
+
 ### Prerequisites
 
 - **Node.js** v18 or higher
