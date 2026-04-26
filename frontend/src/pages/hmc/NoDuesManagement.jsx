@@ -51,7 +51,7 @@ export default function NoDuesManagement() {
   };
 
   const initializedIds = new Set(records.map(r => r.student?._id?.toString()));
-  const uninitializedStudents = students.filter(s => !initializedIds.has(s._id?.toString()));
+  const uninitializedStudents = students.filter(s => !initializedIds.has(s.user?._id?.toString()));
 
   const filteredRecords = filter === 'cleared'
     ? records.filter(r => r.isFullyCleared)
@@ -87,10 +87,10 @@ export default function NoDuesManagement() {
             {uninitializedStudents.map(s => (
               <div key={s._id} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
                 <div>
-                  <p className="text-sm font-semibold text-gray-900">{s.name}</p>
-                  <p className="text-xs text-gray-500">{s.userId} · {s.email}</p>
+                  <p className="text-sm font-semibold text-gray-900">{s.user?.name}</p>
+                  <p className="text-xs text-gray-500">{s.user?.userId} · {s.user?.email}</p>
                 </div>
-                <Button onClick={() => handleInitialize(s._id)}>Initialize</Button>
+                <Button onClick={() => handleInitialize(s.user?._id)}>Initialize</Button>
               </div>
             ))}
           </div>
@@ -146,7 +146,7 @@ export default function NoDuesManagement() {
                         </div>
                       ) : (
                         <button
-                          onClick={e => { e.stopPropagation(); handleClearClick(record.student._id, item); }}
+                          onClick={e => { e.stopPropagation(); handleClearClick(record.student?._id, item); }}
                           className="mt-2 text-xs font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors">
                           Mark as Cleared
                         </button>
